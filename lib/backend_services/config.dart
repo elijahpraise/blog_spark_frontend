@@ -1,9 +1,16 @@
 class BlogSparkConfig {
   String _baseUrl = "";
 
-  String _urlPath = "";
+  String _url = "";
 
-  set setUrl(String encodedPath) => "$_baseUrl/$encodedPath";
+  Map<String, String> _headers = {
+    "Content-Type": "application/json",
+  };
 
-  String get getUrl => _urlPath;
+  Uri get url => Uri.parse(_url);
+  Map<String, String> get headers => _headers;
+
+  set setUrl(String encodedPath) => _url = "$_baseUrl/$encodedPath";
+
+  set setToken(String value) => _headers["Authorization"] = "Token $value";
 }

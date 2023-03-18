@@ -1,19 +1,21 @@
 class User {
   const User(
-      {required this.username,
-      required this.firstname,
-      required this.lastname,
-      required this.gender,
-      required this.phoneNumber,
-      required this.email,
+      {this.id,
+      this.username,
+      this.firstname,
+      this.lastname,
+      this.gender,
+      this.phoneNumber,
+      this.email,
       this.password,
       this.image});
-  final String username;
-  final String firstname;
-  final String lastname;
-  final String gender;
-  final String phoneNumber;
-  final String email;
+  final String? id;
+  final String? username;
+  final String? firstname;
+  final String? lastname;
+  final String? gender;
+  final String? phoneNumber;
+  final String? email;
   final String? image;
   final String? password;
 
@@ -25,7 +27,9 @@ class User {
     String phoneNumber = map["phone_number"];
     String email = map["email"];
     String? image = map["image"];
+    String id = map["id"];
     return User(
+        id: id,
         username: username,
         firstname: firstname,
         lastname: lastname,
@@ -45,6 +49,18 @@ class User {
         "image": image,
         "password": password
       };
+
+  Map<String, dynamic> Function() get updateMap => () {
+        Map<String, dynamic> data = map;
+        data.forEach((key, value) {
+          if (map[key] == null) {
+            data.remove(key);
+          }
+        });
+        return data;
+      };
+
+  Map<String, dynamic> get signInMap => {"email": email, "password": password};
 
   @override
   String toString() {

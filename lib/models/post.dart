@@ -5,20 +5,24 @@ class Post {
     this.id,
     this.image,
     this.authorDetails,
-    required this.likes,
-    required this.title,
-    required this.content,
-    required this.author,
-    required this.category,
+    this.likes = 0,
+    this.title,
+    this.content,
+    this.author,
+    this.category,
+    this.dateCreated,
+    this.lastUpdated,
   });
   final int likes;
   final String? id;
-  final String title;
-  final String content;
+  final String? title;
+  final String? content;
   final String? image;
-  final String author;
-  final String category;
+  final String? author;
+  final String? category;
   final User? authorDetails;
+  final DateTime? dateCreated;
+  final DateTime? lastUpdated;
 
   factory Post.fromMap(Map<String, dynamic> map) {
     int likes = map["likes"];
@@ -29,6 +33,8 @@ class Post {
     User? authorDetails = User.fromMap(map["author_details"]);
     String author = map["author"];
     String category = map["category"];
+    DateTime? dateCreated = DateTime.parse(map["date_created"]);
+    DateTime? lastUpdated = DateTime.parse(map["last_updated"]);
     return Post(
         id: id,
         likes: likes,
@@ -37,6 +43,8 @@ class Post {
         author: author,
         category: category,
         authorDetails: authorDetails,
+        dateCreated: dateCreated,
+        lastUpdated: lastUpdated,
         image: image);
   }
 
@@ -46,6 +54,16 @@ class Post {
         "image": image,
         "author": author,
         "category": category
+      };
+
+  Map<String, dynamic> Function() get updateMap => () {
+        Map<String, dynamic> data = map;
+        data.forEach((key, value) {
+          if (map[key] == null) {
+            data.remove(key);
+          }
+        });
+        return data;
       };
 
   @override

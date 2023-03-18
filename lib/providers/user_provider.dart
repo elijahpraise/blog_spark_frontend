@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:blog_spark/models/user.dart';
+import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
   String _username = "";
@@ -9,6 +10,7 @@ class UserProvider extends ChangeNotifier {
   String _phoneNumber = "";
   String _password = "";
   String _image = "";
+  User? _user;
 
   String get username => _username;
   String get firstname => _firstname;
@@ -18,6 +20,7 @@ class UserProvider extends ChangeNotifier {
   String get phoneNumber => _phoneNumber;
   String get password => _password;
   String get image => _image;
+  User? get user => _user;
 
   set setUsername(String value) {
     _username = value;
@@ -56,6 +59,11 @@ class UserProvider extends ChangeNotifier {
 
   set setImage(String value) {
     _image = value;
+    notifyListeners();
+  }
+
+  set setUser(Map<String, dynamic> value) {
+    _user = User.fromMap(value);
     notifyListeners();
   }
 }
