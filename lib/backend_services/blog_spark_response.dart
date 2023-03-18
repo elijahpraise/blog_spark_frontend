@@ -1,4 +1,4 @@
-enum ResponseType {
+enum ResponseStatus {
   http200,
   http201,
   http400,
@@ -6,40 +6,35 @@ enum ResponseType {
   http404,
   http500,
   serverError,
-  timeOut,
+  timeout,
 }
 
 class BlogSparkResponse {
-  ResponseType _responseType = ResponseType.http200;
+  ResponseStatus _responseStatus = ResponseStatus.http200;
   Map<String, dynamic> _body = {};
 
-  ResponseType get responseType => _responseType;
+  ResponseStatus get responseType => _responseStatus;
   Map<String, dynamic> get body => _body;
 
-  set setResponseType(ResponseType value) => _responseType = value;
+  set setResponseType(ResponseStatus value) => _responseStatus = value;
   set setBody(Map<String, dynamic> value) => _body = value;
 
-  static ResponseType fromInt(int value) {
-    ResponseType result = ResponseType.http200;
+  static ResponseStatus fromInt(int value) {
+    ResponseStatus result = ResponseStatus.http500;
     if (value == 200) {
     } else if (value == 201) {
-      result = ResponseType.http201;
+      result = ResponseStatus.http201;
     } else if (value == 201) {
-      result = ResponseType.http201;
+      result = ResponseStatus.http201;
     } else if (value == 400) {
-      result = ResponseType.http400;
+      result = ResponseStatus.http400;
     } else if (value == 401) {
-      result = ResponseType.http401;
+      result = ResponseStatus.http401;
     } else if (value == 404) {
-      result = ResponseType.http404;
+      result = ResponseStatus.http404;
     } else if (value == 500) {
-      result = ResponseType.http500;
+      result = ResponseStatus.http500;
     }
-    // else if (value == 201) {
-    //   result = ResponseType.http201;
-    // } else if (value == 201) {
-    //   result = ResponseType.http201;
-    // }
     return result;
   }
 }

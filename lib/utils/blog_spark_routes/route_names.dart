@@ -8,4 +8,7 @@ class BlogSparkRoutes {
 
   // Sign In
   static const String signIn = "/signIn";
+
+  // Home
+  static const String home = "/home";
 }

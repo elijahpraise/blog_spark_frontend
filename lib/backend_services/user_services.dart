@@ -17,23 +17,34 @@ class UserServices {
 
   static BlogSparkConfig _config = BlogSparkConfig();
 
+  tryExcept(
+      {required BlogSparkResponse response,
+      required void Function() function}) {
+    try {
+      function();
+    } on SocketException {
+      response.setResponseType = ResponseStatus.serverError;
+    } on TimeoutException {
+      response.setResponseType = ResponseStatus.timeout;
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<BlogSparkResponse> signUp() async {
     String body = jsonEncode(user.map);
     _config.setUrl = "register";
     BlogSparkResponse response = BlogSparkResponse();
-    try {
-      Response request =
-          await http.post(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
-      response.setResponseType = responseType;
-      response.setBody = jsonDecode(request.body);
-    } on SocketException {
-      response.setResponseType = ResponseType.serverError;
-    } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
-    } catch (e) {
-      print(e);
-    }
+    tryExcept(
+        response: response,
+        function: () async {
+          Response request = await http.post(_config.url,
+              body: body, headers: _config.headers);
+          ResponseStatus responseType =
+              BlogSparkResponse.fromInt(request.statusCode);
+          response.setResponseType = responseType;
+          response.setBody = jsonDecode(request.body);
+        });
     return response;
   }
 
@@ -44,13 +55,14 @@ class UserServices {
     try {
       Response request =
           await http.post(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -67,13 +79,14 @@ class UserServices {
     try {
       Response request =
           await http.put(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -93,14 +106,14 @@ class UserServices {
         uploadPreset: variables.uploadPreset,
         folder: variables.uploadFolder,
       ));
-      ResponseType responseType =
+      ResponseStatus responseType =
           BlogSparkResponse.fromInt(request.statusCode!);
       response.setResponseType = responseType;
       response.setBody = {"image": request.url};
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print("cloudinary error - $e");
     }

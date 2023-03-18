@@ -1,6 +1,6 @@
 import 'package:blog_spark/components/blog_spark_sized_box.dart';
-import 'package:blog_spark/utils/blog_spark_images/image_names.dart';
 import 'package:blog_spark/utils/blog_spark_routes/route_names.dart';
+import 'package:blog_spark/utils/constants/constants.dart';
 import 'package:blog_spark/utils/responsive_values/responsive_values.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,76 +10,70 @@ class GettingStarted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     ResponsiveValue value = ResponsiveValue(context: context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Blog Spark'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Stack(
         children: [
-          BlogSparkSizedBox(height: 120),
           CarouselSlider(
             options: CarouselOptions(
-              height: value.height(550.0),
-              aspectRatio: 16 / 5,
+              height: size.height,
+              viewportFraction: 1,
               autoPlay: true,
               enlargeCenterPage: false,
               enableInfiniteScroll: false,
               pageSnapping: false,
             ),
-            items: [
-              {
-                "text": 'Welcome to Blog Spark',
-                "image": BlogSparkImages.slide1
-              },
-              {
-                "text": 'Find your inspiration',
-                "image": BlogSparkImages.slide2
-              },
-              {
-                "text": 'Create and share your own content',
-                "image": BlogSparkImages.slide3
-              }
-            ].map((item) {
+            items: BlogSparkConstants.slides.map((item) {
               String text = item["text"]!;
               String image = item["image"]!;
               String imagePath = "assets/pictures/$image.png";
-              print(imagePath);
               return Builder(
                 builder: (BuildContext context) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      BlogSparkSizedBox(
-                        height: 450,
-                        width: 450,
-                        child: DecoratedBox(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage(imagePath)))),
+                  return BlogSparkSizedBox(
+                    height: size.height,
+                    width: size.width,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.fill, image: AssetImage(imagePath))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              text,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: value.fontSize(30.0),
+                                  color: Colors.white),
+                            ),
+                          ),
+                          BlogSparkSizedBox(height: 115),
+                        ],
                       ),
-                      BlogSparkSizedBox(height: 16),
-                      Text(
-                        text,
-                        style: TextStyle(fontSize: value.fontSize(30.0)),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                    ),
                   );
                 },
               );
             }).toList(),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: BlogSparkSizedBox(
-              height: 52,
-              child: ElevatedButton(
-                onPressed: () => Navigator.of(context)
-                    .pushReplacementNamed(BlogSparkRoutes.signUp),
-                child: Text('Get started'),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+              child: BlogSparkSizedBox(
+                height: 52,
+                width: size.width,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context)
+                      .pushReplacementNamed(BlogSparkRoutes.signUp),
+                  child: Text('Get started'),
+                ),
               ),
             ),
           ),

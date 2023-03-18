@@ -1,5 +1,5 @@
 class BlogSparkConfig {
-  String _baseUrl = "";
+  String _baseUrl = "http://127.0.0.1:8000/";
 
   String _url = "";
 

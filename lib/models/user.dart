@@ -46,8 +46,8 @@ class User {
         "gender": gender,
         "phone_number": phoneNumber,
         "email": email,
-        "image": image,
         "password": password
+        // "image": image,
       };
 
   Map<String, dynamic> Function() get updateMap => () {

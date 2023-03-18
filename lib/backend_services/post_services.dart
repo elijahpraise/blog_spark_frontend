@@ -26,13 +26,14 @@ class PostServices {
     try {
       Response request =
           await http.post(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -44,13 +45,14 @@ class PostServices {
     BlogSparkResponse response = BlogSparkResponse();
     try {
       Response request = await http.get(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -62,13 +64,14 @@ class PostServices {
     BlogSparkResponse response = BlogSparkResponse();
     try {
       Response request = await http.get(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -82,13 +85,14 @@ class PostServices {
     try {
       Response request =
           await http.delete(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -104,13 +108,14 @@ class PostServices {
     try {
       Response request =
           await http.put(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -125,13 +130,14 @@ class PostServices {
     try {
       Response request =
           await http.post(_config.url, body: body, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -143,13 +149,14 @@ class PostServices {
     BlogSparkResponse response = BlogSparkResponse();
     try {
       Response request = await http.get(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -163,13 +170,14 @@ class PostServices {
     try {
       Response request =
           await http.delete(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -182,13 +190,14 @@ class PostServices {
     BlogSparkResponse response = BlogSparkResponse();
     try {
       Response request = await http.put(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
@@ -201,13 +210,14 @@ class PostServices {
     BlogSparkResponse response = BlogSparkResponse();
     try {
       Response request = await http.put(_config.url, headers: _config.headers);
-      ResponseType responseType = BlogSparkResponse.fromInt(request.statusCode);
+      ResponseStatus responseType =
+          BlogSparkResponse.fromInt(request.statusCode);
       response.setResponseType = responseType;
       response.setBody = jsonDecode(request.body);
     } on SocketException {
-      response.setResponseType = ResponseType.serverError;
+      response.setResponseType = ResponseStatus.serverError;
     } on TimeoutException {
-      response.setResponseType = ResponseType.timeOut;
+      response.setResponseType = ResponseStatus.timeout;
     } catch (e) {
       print(e);
     }
