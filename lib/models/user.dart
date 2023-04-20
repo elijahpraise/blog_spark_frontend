@@ -7,13 +7,15 @@ class User {
       this.gender,
       this.phoneNumber,
       this.email,
+      this.token,
       this.password,
       this.image});
-  final String? id;
+  final int? id;
   final String? username;
   final String? firstname;
   final String? lastname;
   final String? gender;
+  final String? token;
   final String? phoneNumber;
   final String? email;
   final String? image;
@@ -27,13 +29,15 @@ class User {
     String phoneNumber = map["phone_number"];
     String email = map["email"];
     String? image = map["image"];
-    String id = map["id"];
+    int id = map["id"];
+    String token = map["token"];
     return User(
         id: id,
         username: username,
         firstname: firstname,
         lastname: lastname,
         gender: gender,
+        token: token,
         phoneNumber: phoneNumber,
         email: email,
         image: image);

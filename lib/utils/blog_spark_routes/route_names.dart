@@ -1,6 +1,6 @@
 class BlogSparkRoutes {
   // Onboarding
-  static const String splashScreen = "/splashScreen";
+  static const String splashScreen = "/";
   static const String gettingStarted = "/gettingStarted";
 
   // Sign Up

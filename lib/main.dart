@@ -1,4 +1,5 @@
 import 'package:blog_spark/caching/user_shared_preferences.dart';
+import 'package:blog_spark/providers/home_provider.dart';
 import 'package:blog_spark/providers/providers.dart';
 import 'package:blog_spark/utils/blog_spark_routes/route_names.dart';
 import 'package:blog_spark/utils/blog_spark_routes/routes.dart';
@@ -19,16 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool darkMode = UserSharedPreferences.getThemeMode() ?? false;
-    ThemeMode themeMode = darkMode ? ThemeMode.dark : ThemeMode.light;
-    return MaterialApp(
-      title: 'Blog Spark',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: themeMode,
-      routes: routes,
-      initialRoute: BlogSparkRoutes.splashScreen,
-      debugShowCheckedModeBanner: false,
-    );
+    return Consumer<HomeProvider>(
+        builder: (context, homeProvider, Widget? child) {
+      ThemeMode themeMode =
+          homeProvider.darkMode ? ThemeMode.dark : ThemeMode.light;
+      return MaterialApp(
+        title: 'Blog Spark',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: themeMode,
+        routes: routes,
+        initialRoute: BlogSparkRoutes.signIn,
+        debugShowCheckedModeBanner: false,
+      );
+    });
   }
 }

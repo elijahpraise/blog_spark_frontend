@@ -7,7 +7,6 @@ class UserSharedPreferences {
   static const _lastname = "lastname";
   static const _email = "email";
   static const _darkMode = "darkMode";
-  static const _token = "token";
 
   static init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -15,10 +14,6 @@ class UserSharedPreferences {
 
   static setSignedIn(bool value) async {
     await _preferences!.setBool(_hasSignedIn, value);
-  }
-
-  static setToken(String value) async {
-    await _preferences!.setString(_token, value);
   }
 
   static setDarkMode(bool value) async {
@@ -38,8 +33,6 @@ class UserSharedPreferences {
   }
 
   static getEmail() => _preferences!.getString(_email);
-
-  static getToken() => _preferences!.getString(_token);
 
   static getFirstname() => _preferences!.getString(_firstname);
 

@@ -37,17 +37,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ResponsiveValue value = ResponsiveValue(context: context);
+    double value = ResponsiveValue(context: context).height(200);
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlogSparkIcon(
               icon: BlogSparkIcons.blogSpark,
-              height: value.height(200),
-              width: value.height(200),
+              height: value,
+              width: value,
             ),
             BlogSparkSizedBox(height: 20),
             CircularProgressIndicator(),

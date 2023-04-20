@@ -1,3 +1,4 @@
+import 'package:blog_spark/screens/home/home.dart';
 import 'package:blog_spark/screens/onboarding/getting_started.dart';
 import 'package:blog_spark/screens/onboarding/splash_screen.dart';
 import 'package:blog_spark/screens/sign_in/sign_in.dart';
@@ -14,5 +15,8 @@ Map<String, Widget Function(BuildContext)> routes = {
   BlogSparkRoutes.signUp: (_) => SignUp(),
 
   // Sign in
-  BlogSparkRoutes.signIn: (_) => SignIn()
+  BlogSparkRoutes.signIn: (_) => SignIn(),
+
+  // Home
+  BlogSparkRoutes.home: (_) => HomeScreen(),
 };
