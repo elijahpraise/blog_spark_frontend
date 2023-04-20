@@ -2,14 +2,9 @@ import 'package:blog_spark/providers/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NightMode extends StatefulWidget {
+class NightMode extends StatelessWidget {
   const NightMode({super.key});
 
-  @override
-  State<NightMode> createState() => _NightModeState();
-}
-
-class _NightModeState extends State<NightMode> {
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
