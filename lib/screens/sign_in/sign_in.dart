@@ -72,7 +72,7 @@ class _SignInState extends State<SignIn> {
                           await _signIn();
                         }
                       },
-                      child: Text("Sign up"),
+                      child: Text("Sign in"),
                     ),
                   ),
                 ),
